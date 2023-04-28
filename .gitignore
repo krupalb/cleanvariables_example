@@ -1,0 +1,14 @@
+# Ignore the .env file
+.env
+
+# Ignore all vendor directories
+vendor
+
+#Ignore all the mysql-data folder
+mysql-data/*
+
+# Ignore all composer.lock files
+composer.lock
+
+# Ignore all .DS_Store files
+.DS_Store
