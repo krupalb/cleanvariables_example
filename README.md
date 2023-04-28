@@ -2,10 +2,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<title>Simple PHP Form Example</title>
 </head>
 <body>
 	<h1>Simple PHP Form Example</h1>
-<p>This is a simple PHP form example that demonstrates how to create a basic form using HTML and PHP, and submit the form data to a MySQL database using the <code>mysqli</code> extension.</p>
+<p>This is a simple PHP form example that demonstrates how to create a basic form using HTML and PHP, and submit the form data to a MySQL database securely using the <code>mysqli</code> extension.</p>
 
 <h2>Requirements</h2>
 
