@@ -17,7 +17,7 @@
 <h2>Installation</h2>
 
 <ol>
-	<li>Clone this repository to your local machine using <code>git clone https://github.com/your-username/your-repo.git</code>.</li>
+	<li>Clone this repository to your local machine using <code>git clone https://github.com/krupalb/cleanvariables_example.git</code>.</li>
 	<li>Navigate to the root directory of the repository and run <code>docker-compose up -d</code> to start the containers.</li>
 	<li>Open a web browser and navigate to <code>http://localhost:8089</code> to access the PHP form.</li>
 </ol>
