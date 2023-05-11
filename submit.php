@@ -1,9 +1,9 @@
 <?php
-function cleanVariables($input, $is_html, $has_quotes, &$xc_param)
+function cleanVariables($input, $is_html, $has_quotes)
 {
     if (is_array($input)) {
         foreach ($input as $key => $value) {
-            $input[$key] = cleanVariables($value, $is_html, $has_quotes, $xc_param);
+            $input[$key] = cleanVariables($value, $is_html, $has_quotes);
         }
     } else {
         $input = trim($input);
@@ -19,10 +19,8 @@ function cleanVariables($input, $is_html, $has_quotes, &$xc_param)
   return $input;
 }
 
-$xc_param=false;
-
 // Clean the input variables
-$_POST = cleanVariables($_POST, true, true,$xc_param);
+$_POST = cleanVariables($_POST, true, true);
 
 // Connect to the database
 $host = $_ENV['MYSQL_HOST'];
@@ -49,17 +47,27 @@ if ($conn->ping()) {
 // Prepare and execute the SQL statement
 
 $name = $_POST['name'];
-$email = $_POST['email'];
+// $email = $_POST['email'];
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); // Sanitized email
+
+// Validate email format
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format.");
+}
+
 $password = $_POST['password'];
 
+// Hashing the password
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 $stmt = $conn->prepare("INSERT INTO cleanVariables_users (name, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $name,$email, $password);
+$stmt->bind_param("sss", $name,$email, $hashedPassword);
 
 $stmt->execute();
 if ($stmt->error) {
     echo "Error: " . $stmt->error;
 }
-echo "Data saved to database.";
+echo "Data saved to the database.";
 
 // Close the database connection
 $stmt->close();
